@@ -1,0 +1,78 @@
+.card {
+  width: 310px;
+  background-color: rgb(205, 247, 242);
+  font-family: Courier New, monospace;
+  height: 220px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  border-radius: 10px;
+  word-wrap: break-word;
+}
+.cardDescription {
+  margin-top: 25px;
+  padding: 0 15px;
+}
+
+.cardButtons {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 15px;
+}
+.card button {
+  border: none;
+  outline: 0;
+  padding: 8px;
+  color: #fff;
+  background-color: #5268e2;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 11px;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.contentHead {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 15px;
+  background-color: rgb(200, 240, 155);
+  border-radius: 5px;
+}
+
+.cardDescription {
+  padding: 0 10px;
+}
+.inputSearch {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 250px;
+  padding: 10px 10px;
+  background: #f2f2f2;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
+  outline: none;
+  font-size: 13px;
+  color: #222;
+  font-weight: 500;
+}
+.searchButton {
+  text-decoration: none;
+  display: inline-block;
+  padding: 4px 20px;
+  margin: 10px 5px;
+  border-radius: 5px;
+  background-color: rgb(144, 183, 241);
+  background-position: 100% 0;
+  background-size: 100% 100%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(247, 241, 242);
+
+  transition: 0.5s;
+}
+.searchButton:hover {
+  background-color: rgb(106, 158, 236);
+}

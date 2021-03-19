@@ -23,4 +23,5 @@ npm install
 - **For quick application run use this command**
 
 ```
-npm start
+npm run dev
+
