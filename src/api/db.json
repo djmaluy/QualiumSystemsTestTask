@@ -125,14 +125,6 @@
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": 100,
       "quantity": 1
-    },
-    {
-      "id": "vkllhfm09zm",
-      "title": "Ford",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 800,
-      "inCart": false,
-      "quantity": 1
     }
   ]
 }

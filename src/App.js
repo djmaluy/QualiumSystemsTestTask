@@ -67,7 +67,7 @@ const App = () => {
       })
     );
   };
-
+  // === adding product to the cart
   const addToCart = async (product) => {
     const request = {
       ...product,
@@ -102,13 +102,12 @@ const App = () => {
       );
     }
   };
-  const deleteFromCart = (id) => {
-    cartProducts.forEach((product, index) => {
-      if (product.id === id) {
-        cartProducts.splice(index, 1);
-      }
+  const deleteFromCart = async (id) => {
+    api.delete(`/cart/${id}`);
+    const newCartProducts = cartProducts.filter((p) => {
+      return p.id !== id;
     });
-    setCartProducts(cartProducts);
+    setCartProducts(newCartProducts);
   };
   return (
     <div className="container">

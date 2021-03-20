@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import classes from "../pages/mainView/MainView.module.css";
 
 export const ProductCard = ({ product, onDeleteItem, addToCart }) => {
   const { title, price, description } = product;
+  const [isDisabled, setIsDisabled] = useState(false);
 
+  const onClickHandler = () => {
+    setIsDisabled(true);
+    addToCart(product);
+  };
   return (
     <>
       <div className={classes.cardDescription}>
@@ -28,7 +33,11 @@ export const ProductCard = ({ product, onDeleteItem, addToCart }) => {
         <button className="button" onClick={() => onDeleteItem(product.id)}>
           Delete
         </button>
-        <button onClick={() => addToCart(product)} className="button">
+        <button
+          onClick={onClickHandler}
+          disabled={isDisabled}
+          className="button"
+        >
           Add to cart
         </button>
       </div>
