@@ -16,6 +16,7 @@ export const CartView = ({
         {cartProducts.map((product) => {
           return (
             <Product
+              key={product.id}
               product={product}
               removeProductFromCart={removeProductFromCart}
               addProductToCart={addProductToCart}

@@ -5,7 +5,7 @@ import api from "./api/db";
 import uuid from "react-uuid";
 import { useServerData } from "./components/useServerData";
 import { CartView } from "./pages/cartView/CartView";
-import CreateView from "./pages/createView/CreateView";
+import { CreateView } from "./pages/createView/CreateView";
 import EditView from "./pages/editView/EditView";
 import { MainView } from "./pages/mainView/MainView";
 import { PageNotFound } from "./pages/pageNotFound/PageNotFound";
@@ -29,10 +29,10 @@ const App = () => {
   if (isError) {
     return <div>...error</div>;
   }
+  //  ===  Filtering by title
   const onSearchClick = (text) => {
     setSearchText(text);
   };
-  //  ===  Filtering by title
   const getFilteredData = () => {
     if (!searchText) {
       return productsData;
@@ -48,10 +48,12 @@ const App = () => {
     setProductsData([...productsData.filter((product) => product.id !== id)]); //Возможно я неправильно понял и надо было удалять из сервера !?
   };
   // === adding product to db
-  const addProductHandler = async (product) => {
+  const addProductHandler = async (title, price, description) => {
     const request = {
       id: uuid(),
-      ...product,
+      title,
+      price,
+      description,
     };
     const response = await api.post("/products", request);
     setProductsData([...productsData, response.data]);
