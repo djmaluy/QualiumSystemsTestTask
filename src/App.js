@@ -6,7 +6,7 @@ import uuid from "react-uuid";
 import { useServerData } from "./components/useServerData";
 import { CartView } from "./pages/cartView/CartView";
 import { CreateView } from "./pages/createView/CreateView";
-import EditView from "./pages/editView/EditView";
+import { EditView } from "./pages/editView/EditView";
 import { MainView } from "./pages/mainView/MainView";
 import { PageNotFound } from "./pages/pageNotFound/PageNotFound";
 

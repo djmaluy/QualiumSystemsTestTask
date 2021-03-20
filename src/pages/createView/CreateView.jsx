@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+
 import classes from "../editView/EditView.module.css";
 
-const useFormField = (initialValue = "") => {
+export const useFormField = (initialValue = "") => {
   const [value, setValue] = useState(initialValue);
   const onChange = React.useCallback((e) => setValue(e.target.value), []);
   return { value, onChange };
