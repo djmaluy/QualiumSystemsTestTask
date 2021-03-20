@@ -1,76 +1,59 @@
-.shoppingCart {
-  width: 550px;
-  height: auto;
-  margin: 80px auto;
-  background: #ffffff;
-  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
-
+.wrapper {
+  background-color: whitesmoke;
+  border: 1px solid #555;
+}
+.details {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px 50px;
+  background-color: cornsilk;
+  border: 1px solid #ccc;
 }
-.item {
-  padding: 20px 30px;
-  height: 120px;
+.details .box {
+  max-width: 500px;
+  min-width: 290px;
+  margin: 25px;
+}
+.box .row {
   display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
-.buttons {
-  position: relative;
-  padding-top: 30px;
-  margin-right: 60px;
+.box .row h2 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
-.description {
-  padding-top: 10px;
-  margin-right: 60px;
-  width: 170px;
-}
-
-.description span {
-  display: block;
-  font-size: 14px;
-  color: #43484d;
-  font-weight: 400;
+.box .row span {
+  color: brown;
 }
 
-.description span:first-child {
-  margin-bottom: 5px;
+.amount span {
+  color: brown;
+  padding: 0 20px;
 }
-
-.quantity {
-  padding-top: 20px;
-  margin-right: 60px;
+.amount .count {
+  width: 40px;
+  height: 30px;
+  border: 1px solid #555;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
 }
-.quantity input {
-  -webkit-appearance: none;
-  border: none;
-  text-align: center;
-  width: 32px;
-  font-size: 16px;
-  color: #43484d;
-  font-weight: 300;
+.delete {
+  margin-top: 5px;
+  font-weight: 900;
+  color: brown;
+  cursor: pointer;
 }
-.totalPrice {
-  width: 83px;
-  padding-top: 27px;
-  text-align: center;
-  font-size: 16px;
-  color: #43484d;
-  font-weight: 300;
+.total {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
-.totalPrice {
-  display: block;
-  margin-left: 25px;
-}
-
-.add {
-  background-color: #40c0f0;
-  width: 30px;
-  border-radius: 5px;
-  margin-left: 5px;
-}
-.remove {
-  background-color: #f04040;
-  width: 30px;
-  border-radius: 5px;
-  margin-right: 7px;
+.total h3 {
+  margin-right: 50px;
+  color: brown;
 }

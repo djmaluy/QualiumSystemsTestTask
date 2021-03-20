@@ -8,7 +8,7 @@ export const MainView = ({
   onSearchClick,
   filteredData,
   onDeleteItem,
-  addProductToCart,
+  addToCart,
 }) => {
   return (
     <div>
@@ -28,7 +28,7 @@ export const MainView = ({
       <Pagination
         filteredData={filteredData}
         onDeleteItem={onDeleteItem}
-        addProductToCart={addProductToCart}
+        addToCart={addToCart}
       />
     </div>
   );

@@ -3,11 +3,7 @@ import ReactPaginate from "react-paginate";
 import classes from "../pages/mainView/MainView.module.css";
 import { ProductCard } from "./ProductCard";
 
-export const Pagination = ({
-  filteredData,
-  onDeleteItem,
-  addProductToCart,
-}) => {
+export const Pagination = ({ filteredData, onDeleteItem, addToCart }) => {
   const [currentPage, setCurrentPage] = useState(0); // currentPage is the index of the page selected by the user
 
   const PER_PAGE = 10; // PER_PAGE holds the number of items to be displayed on each page.
@@ -28,7 +24,7 @@ export const Pagination = ({
               <ProductCard
                 product={product}
                 onDeleteItem={onDeleteItem}
-                addProductToCart={addProductToCart}
+                addToCart={addToCart}
               />
             </div>
           );

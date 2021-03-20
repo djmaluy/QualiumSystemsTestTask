@@ -1,35 +1,34 @@
 import React from "react";
-import { Product } from "../../components/Product";
+import { BasketCard } from "../../components/BasketCard";
 import classes from "./CartView.module.css";
 
 export const CartView = ({
   cartProducts,
-  onDelete,
-  removeProductFromCart,
-  addProductToCart,
+  increment,
+  decrement,
+  deleteFromCart,
 }) => {
   const totalPrice = cartProducts.reduce((a, c) => a + c.quantity * c.price, 0);
   return (
     <>
-      <div className={classes.shoppingCart}>
-        <h2>Корзина</h2>
-        {cartProducts.map((product) => {
-          return (
-            <Product
-              key={product.id}
+      <div className={classes.wrapper}>
+        {cartProducts.map((product) => (
+          <div className={classes.details} key={product.id}>
+            <BasketCard
               product={product}
-              removeProductFromCart={removeProductFromCart}
-              addProductToCart={addProductToCart}
+              increment={increment}
+              decrement={decrement}
             />
-          );
-        })}
-        <div className={classes.totalPrice}>
-          <div>
-            <strong>Total Price</strong>
+            <div
+              className={classes.delete}
+              onClick={() => deleteFromCart(product.id)}
+            >
+              X
+            </div>
           </div>
-          <div>
-            <strong>{totalPrice.toFixed(2)}</strong>
-          </div>
+        ))}
+        <div className={classes.total}>
+          <h3>Total:{totalPrice} </h3>
         </div>
       </div>
     </>

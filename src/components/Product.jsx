@@ -27,9 +27,7 @@ export const Product = ({
         >
           -1
         </button>
-        <span>
-          <strong>Количество: </strong> {product.quantity}
-        </span>
+        <span>{product.quantity}</span>
         <button
           onClick={() => addProductToCart(product)}
           className={classes.add}

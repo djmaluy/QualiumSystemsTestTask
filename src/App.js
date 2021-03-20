@@ -67,8 +67,16 @@ const App = () => {
       })
     );
   };
-  //  === add and remove quantity products in basket
-  const addProductToCart = (product) => {
+
+  const addToCart = async (product) => {
+    const request = {
+      ...product,
+      quantity: 1,
+    };
+    const response = await api.post("/cart", request);
+    setCartProducts([...cartProducts, response.data]);
+  };
+  const increment = (product) => {
     const exist = cartProducts.find((p) => p.id === product.id);
     if (exist) {
       setCartProducts(
@@ -80,7 +88,8 @@ const App = () => {
       setCartProducts([...cartProducts, { ...product, quantity: 1 }]);
     }
   };
-  const removeProductFromCart = (product) => {
+
+  const decrement = (product) => {
     if (product.quantity <= 1) return;
     const exist = cartProducts.find((p) => p.id === product.id);
     if (exist.quantity === 1) {
@@ -93,7 +102,14 @@ const App = () => {
       );
     }
   };
-
+  const deleteFromCart = (id) => {
+    cartProducts.forEach((product, index) => {
+      if (product.id === id) {
+        cartProducts.splice(index, 1);
+      }
+    });
+    setCartProducts(cartProducts);
+  };
   return (
     <div className="container">
       <Switch>
@@ -107,6 +123,9 @@ const App = () => {
               onDeleteItem={onDeleteItem}
               filteredData={filteredData}
               onSearchClick={onSearchClick}
+              addToCart={addToCart}
+              increment={increment}
+              decrement={decrement}
             />
           )}
         />
@@ -117,8 +136,9 @@ const App = () => {
               isFetching={isFetching}
               isError={isError}
               cartProducts={cartProducts}
-              addProductToCart={addProductToCart}
-              removeProductFromCart={removeProductFromCart}
+              increment={increment}
+              decrement={decrement}
+              deleteFromCart={deleteFromCart}
             />
           )}
         />

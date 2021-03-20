@@ -2,14 +2,14 @@
   "products": [
     {
       "id": "bix27468fjc",
-      "title": "Audi ",
+      "title": "Audi 6",
       "price": 100,
-      "description": " ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?"
+      "description": "lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?"
     },
     {
       "id": "BMW",
       "title": "iphone 11",
-      "price": "151",
+      "price": "150",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?"
     },
     {
@@ -124,6 +124,14 @@
       "title": "Audi",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": 100,
+      "quantity": 1
+    },
+    {
+      "id": "vkllhfm09zm",
+      "title": "Ford",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "price": 800,
+      "inCart": false,
       "quantity": 1
     }
   ]
