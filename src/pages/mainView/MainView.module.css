@@ -58,21 +58,23 @@
   font-weight: 500;
 }
 .searchButton {
-  text-decoration: none;
-  display: inline-block;
   padding: 4px 20px;
   margin: 10px 5px;
   border-radius: 5px;
-  background-color: rgb(144, 183, 241);
-  background-position: 100% 0;
-  background-size: 100% 100%;
-  font-family: "Montserrat", sans-serif;
   font-size: 15px;
   font-weight: bold;
-  color: rgb(247, 241, 242);
-
-  transition: 0.5s;
+  cursor: pointer;
+  background-color: rgb(127, 175, 247);
+  color: white;
 }
 .searchButton:hover {
-  background-color: rgb(106, 158, 236);
+  background-color: rgb(84, 143, 231);
+}
+
+.loading {
+  font-weight: bold;
+  column-rule: black;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 25px;
 }

@@ -7,30 +7,35 @@ export const CartView = ({
   increment,
   decrement,
   deleteFromCart,
+  isFetching,
 }) => {
   const totalPrice = cartProducts.reduce((a, c) => a + c.quantity * c.price, 0);
   return (
     <>
-      <div className={classes.wrapper}>
-        {cartProducts.map((product) => (
-          <div className={classes.details} key={product.id}>
-            <BasketCard
-              product={product}
-              increment={increment}
-              decrement={decrement}
-            />
-            <div
-              className={classes.delete}
-              onClick={() => deleteFromCart(product.id)}
-            >
-              X
+      {isFetching ? (
+        <div className={classes.loading}>Loading ...</div>
+      ) : (
+        <div className={classes.wrapper}>
+          {cartProducts.map((product) => (
+            <div className={classes.details} key={product.id}>
+              <BasketCard
+                product={product}
+                increment={increment}
+                decrement={decrement}
+              />
+              <div
+                className={classes.delete}
+                onClick={() => deleteFromCart(product.id)}
+              >
+                X
+              </div>
             </div>
+          ))}
+          <div className={classes.total}>
+            <h3>Total:{totalPrice} </h3>
           </div>
-        ))}
-        <div className={classes.total}>
-          <h3>Total:{totalPrice} </h3>
         </div>
-      </div>
+      )}
     </>
   );
 };

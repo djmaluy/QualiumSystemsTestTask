@@ -15,7 +15,6 @@ const App = () => {
     {
       productsData,
       isFetching,
-      isError,
       setProductsData,
       cartProducts,
       setCartProducts,
@@ -23,12 +22,6 @@ const App = () => {
   ] = useServerData();
   const [searchText, setSearchText] = useState("");
 
-  if (isFetching) {
-    return <div>Loading...</div>;
-  }
-  if (isError) {
-    return <div>...error</div>;
-  }
   //  ===  Filtering by title
   const onSearchClick = (text) => {
     setSearchText(text);
@@ -123,8 +116,7 @@ const App = () => {
               filteredData={filteredData}
               onSearchClick={onSearchClick}
               addToCart={addToCart}
-              increment={increment}
-              decrement={decrement}
+              isFetching={isFetching}
             />
           )}
         />
@@ -133,7 +125,6 @@ const App = () => {
           render={() => (
             <CartView
               isFetching={isFetching}
-              isError={isError}
               cartProducts={cartProducts}
               increment={increment}
               decrement={decrement}

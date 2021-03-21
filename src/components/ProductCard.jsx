@@ -28,15 +28,22 @@ export const ProductCard = ({ product, onDeleteItem, addToCart }) => {
       </div>
       <div className={classes.cardButtons}>
         <Link to={{ pathname: `/editView`, state: { product } }}>
-          <button className="button">Edit</button>
+          <button style={{ backgroundColor: "green" }} className="button">
+            Edit
+          </button>
         </Link>
-        <button className="button" onClick={() => onDeleteItem(product.id)}>
+        <button
+          style={{ backgroundColor: "brown" }}
+          className="button"
+          onClick={() => onDeleteItem(product.id)}
+        >
           Delete
         </button>
         <button
           onClick={onClickHandler}
           disabled={isDisabled}
           className="button"
+          style={{ backgroundColor: "#0c6bf0" }}
         >
           Add to cart
         </button>

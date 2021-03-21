@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 export const useServerData = () => {
   const [productsData, setProductsData] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
-  const [isError, setIsError] = useState(false);
   const [cartProducts, setCartProducts] = useState([]);
   useEffect(() => {
     const getProducts = async () => {
@@ -14,7 +13,7 @@ export const useServerData = () => {
         setProductsData(data);
         setIsFetching(false);
       } catch (e) {
-        setIsError(true);
+        alert(e);
       }
     };
     getProducts();
@@ -37,7 +36,6 @@ export const useServerData = () => {
     {
       productsData,
       isFetching,
-      isError,
       setProductsData,
       cartProducts,
       setCartProducts,

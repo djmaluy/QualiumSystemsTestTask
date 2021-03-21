@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { InputSearch } from "../../components/InputSearch";
-import { Pagination } from "../../components/Pagination";
+import { Cards } from "../../components/Cards";
 import classes from "./MainView.module.css";
 
 export const MainView = ({
@@ -9,6 +9,7 @@ export const MainView = ({
   filteredData,
   onDeleteItem,
   addToCart,
+  isFetching,
 }) => {
   return (
     <div>
@@ -25,11 +26,15 @@ export const MainView = ({
           </Link>
         </div>
       </div>
-      <Pagination
-        filteredData={filteredData}
-        onDeleteItem={onDeleteItem}
-        addToCart={addToCart}
-      />
+      {isFetching ? (
+        <div className={classes.loading}>Loading .... </div>
+      ) : (
+        <Cards
+          filteredData={filteredData}
+          onDeleteItem={onDeleteItem}
+          addToCart={addToCart}
+        />
+      )}
     </div>
   );
 };
