@@ -4,13 +4,15 @@
       "id": "bix27468fjc",
       "title": "Audi ",
       "price": 100,
-      "description": "lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?"
+      "description": "lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "inCart": false
     },
     {
       "id": "BMW",
       "title": "iphone 11",
       "price": "150",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?"
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "inCart": false
     },
     {
       "id": "ox98i1f5idg",

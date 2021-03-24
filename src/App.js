@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect, Route, Switch } from "react-router";
 import "./App.css";
-import api from "./api/db";
+import api from "./api/api";
 import uuid from "react-uuid";
 import { useServerData } from "./components/useServerData";
 import { CartView } from "./pages/cartView/CartView";
@@ -9,6 +9,7 @@ import { CreateView } from "./pages/createView/CreateView";
 import { EditView } from "./pages/editView/EditView";
 import { MainView } from "./pages/mainView/MainView";
 import { PageNotFound } from "./pages/pageNotFound/PageNotFound";
+import { InputSearch } from "./components/InputSearch";
 
 const App = () => {
   const [
@@ -18,27 +19,34 @@ const App = () => {
       setProductsData,
       cartProducts,
       setCartProducts,
+      totalPages,
     },
   ] = useServerData();
-  const [searchText, setSearchText] = useState("");
+
+  const [page, setPage] = useState(1);
+  const [searchValue, setSearchValue] = useState("");
+  console.log(searchValue);
 
   //  ===  Filtering by title
-  const onSearchClick = (text) => {
-    setSearchText(text);
-  };
-  const getFilteredData = () => {
-    if (!searchText) {
-      return productsData;
-    }
-    return productsData.filter((p) => {
-      return p["title"].toLowerCase().includes(searchText.toLowerCase());
-    });
-  };
-  const filteredData = getFilteredData();
+  function search(rows) {
+    return rows.filter((row) =>
+      row.title.toLowerCase().indexOf(searchValue > -1)
+    );
+  }
+
+  // const getFilteredData = () => {
+  //   if (!searchText) {
+  //     return productsData;
+  //   }
+  //   return productsData.filter((p) => {
+  //     return p["title"].toLowerCase().includes(searchText.toLowerCase());
+  //   });
+  // };
+  // const filteredData = getFilteredData();
 
   // === Deleting product
   const onDeleteItem = (id) => {
-    setProductsData([...productsData.filter((product) => product.id !== id)]); //Возможно я неправильно понял и надо было удалять из сервера !?
+    setProductsData([...productsData.filter((product) => product.id !== id)]);
   };
   // === adding product to db
   const addProductHandler = async (title, price, description) => {
@@ -102,8 +110,12 @@ const App = () => {
     });
     setCartProducts(newCartProducts);
   };
+  const handlePageClick = (page) => {
+    setPage(page);
+  };
   return (
     <div className="container">
+      <InputSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       <Switch>
         <Route exact path="/">
           <Redirect to="/mainView" />
@@ -113,10 +125,13 @@ const App = () => {
           render={() => (
             <MainView
               onDeleteItem={onDeleteItem}
-              filteredData={filteredData}
-              onSearchClick={onSearchClick}
+              productsData={search(productsData)}
+              // onSearchClick={onSearchClick}
               addToCart={addToCart}
               isFetching={isFetching}
+              page={page}
+              totalPages={totalPages}
+              handlePageClick={handlePageClick}
             />
           )}
         />
