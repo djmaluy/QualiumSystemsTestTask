@@ -5,7 +5,18 @@ export const useServerData = () => {
   const [productsData, setProductsData] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [cartProducts, setCartProducts] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  const indexOfLastItem = currentPage * PER_PAGE;
+  const indexOfFirstItem = indexOfLastItem - PER_PAGE;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+  const pages = Math.ceil(filteredProducts.length / PER_PAGE);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -15,14 +26,21 @@ export const useServerData = () => {
         const result = await response.json();
         setIsFetching(false);
         setProductsData(result);
-
-        setTotalPages(Math.ceil(result.length / PER_PAGE));
       } catch (e) {
         alert(e);
       }
     };
+
     getProducts();
   }, []);
+
+  useEffect(() => {
+    setFilteredProducts(
+      productsData.filter((product) =>
+        product.title.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    );
+  }, [searchValue, productsData]);
 
   // === fetch cart data from api
   useEffect(() => {
@@ -44,7 +62,11 @@ export const useServerData = () => {
       setProductsData,
       cartProducts,
       setCartProducts,
-      totalPages,
+      setCurrentPage,
+      pages,
+      currentProducts,
+      filteredProducts,
+      setSearchValue,
     },
   ];
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Redirect, Route, Switch } from "react-router";
 import "./App.css";
 import api from "./api/api";
@@ -9,7 +9,6 @@ import { CreateView } from "./pages/createView/CreateView";
 import { EditView } from "./pages/editView/EditView";
 import { MainView } from "./pages/mainView/MainView";
 import { PageNotFound } from "./pages/pageNotFound/PageNotFound";
-import { InputSearch } from "./components/InputSearch";
 
 const App = () => {
   const [
@@ -19,34 +18,18 @@ const App = () => {
       setProductsData,
       cartProducts,
       setCartProducts,
-      totalPages,
+      setCurrentPage,
+      pages,
+      setSearchValue,
+      currentProducts,
     },
   ] = useServerData();
 
-  const [page, setPage] = useState(1);
-  const [searchValue, setSearchValue] = useState("");
-  console.log(searchValue);
-
-  //  ===  Filtering by title
-  function search(rows) {
-    return rows.filter((row) =>
-      row.title.toLowerCase().indexOf(searchValue > -1)
-    );
-  }
-
-  // const getFilteredData = () => {
-  //   if (!searchText) {
-  //     return productsData;
-  //   }
-  //   return productsData.filter((p) => {
-  //     return p["title"].toLowerCase().includes(searchText.toLowerCase());
-  //   });
-  // };
-  // const filteredData = getFilteredData();
-
   // === Deleting product
-  const onDeleteItem = (id) => {
-    setProductsData([...productsData.filter((product) => product.id !== id)]);
+  const onDeleteItem = async (id) => {
+    await api.delete(`/products/${id}`);
+    const newProductsList = productsData.filter((product) => product.id !== id);
+    setProductsData(newProductsList);
   };
   // === adding product to db
   const addProductHandler = async (title, price, description) => {
@@ -110,12 +93,9 @@ const App = () => {
     });
     setCartProducts(newCartProducts);
   };
-  const handlePageClick = (page) => {
-    setPage(page);
-  };
+
   return (
     <div className="container">
-      <InputSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       <Switch>
         <Route exact path="/">
           <Redirect to="/mainView" />
@@ -125,13 +105,12 @@ const App = () => {
           render={() => (
             <MainView
               onDeleteItem={onDeleteItem}
-              productsData={search(productsData)}
-              // onSearchClick={onSearchClick}
               addToCart={addToCart}
               isFetching={isFetching}
-              page={page}
-              totalPages={totalPages}
-              handlePageClick={handlePageClick}
+              setCurrentPage={setCurrentPage}
+              pages={pages}
+              currentProducts={currentProducts}
+              setSearchValue={setSearchValue}
             />
           )}
         />

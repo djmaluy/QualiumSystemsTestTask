@@ -8,7 +8,6 @@ body {
   background-color: rgb(235, 226, 226);
   font-family: "Helvetica";
 }
-
 .button {
   min-width: 80px;
   font-family: inherit;
@@ -26,37 +25,40 @@ body {
 .button:hover {
   background: #1d49aa;
 }
-
 .button[disabled] {
   color: #d2d5db;
   background: #6c7589;
   cursor: not-allowed;
 }
-
 /* ==== Pagination =====*/
-.pagination {
+.pagination-container {
   display: flex;
-  list-style: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-weight: 500;
+  font-size: 15px;
+}
+.pagination-container a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  height: 40px;
+  width: 40px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  border: 1px solid rgb(146, 142, 142);
   cursor: pointer;
 }
-
-.pagination a {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #6c7ac9;
-  color: #6c7ac9;
+.pagination-container a.active {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #7cbddb;
 }
-
-.pagination__link {
-  font-weight: bold;
+.pagination-container a.disabled {
+  opacity: 0.2;
 }
-
-.pagination__link--active a {
-  color: #fff;
-  background: #6c7ac9;
-}
-
-.pagination__link--disabled a {
-  color: rgb(198, 197, 202);
-  border: 1px solid rgb(198, 197, 202);
+.pagination-container a:hover:not(.active) {
+  background-color: rgb(238, 238, 238);
 }

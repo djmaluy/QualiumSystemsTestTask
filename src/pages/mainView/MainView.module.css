@@ -56,21 +56,12 @@
   font-size: 13px;
   color: #222;
   font-weight: 500;
+  margin-left: 10px;
 }
-.searchButton {
-  padding: 4px 20px;
-  margin: 10px 5px;
-  border-radius: 5px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  background-color: rgb(127, 175, 247);
-  color: white;
+.search {
+  display: flex;
+  align-items: center;
 }
-.searchButton:hover {
-  background-color: rgb(84, 143, 231);
-}
-
 .loading {
   font-weight: bold;
   column-rule: black;

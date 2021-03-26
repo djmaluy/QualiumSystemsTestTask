@@ -1,24 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { InputSearch } from "../../components/InputSearch";
 import { Cards } from "../../components/Cards";
 import classes from "./MainView.module.css";
 import { Pagination } from "../../components/Pagination";
+import { InputSearch } from "../../components/InputSearch";
 
 export const MainView = ({
-  productsData,
   onDeleteItem,
   addToCart,
   isFetching,
-  totalPages,
-  handlePageClick,
-  page,
   search,
+  setCurrentPage,
+  pages,
+  currentProducts,
+  setSearchValue,
 }) => {
   return (
     <div>
       <div className={classes.contentHead}>
-        <div></div>
+        <div className={classes.search}>
+          <label>Поиск:</label>
+          <InputSearch setSearchValue={setSearchValue} />
+        </div>
         <div>
           <Link to="/createView">
             <button className="button">Create</button>
@@ -28,23 +31,21 @@ export const MainView = ({
           </Link>
         </div>
       </div>
-      <div>
-        <p>Page: {page}</p>
-      </div>
+
       {isFetching ? (
         <div className={classes.loading}>Loading .... </div>
       ) : (
         <>
           <Cards
-            productsData={productsData}
             onDeleteItem={onDeleteItem}
             addToCart={addToCart}
-            page={page}
             search={search}
+            currentProducts={currentProducts}
           />
           <Pagination
-            totalPages={totalPages}
-            handlePageClick={handlePageClick}
+            setCurrentPage={setCurrentPage}
+            pages={pages}
+            currentProducts={currentProducts}
           />
         </>
       )}
