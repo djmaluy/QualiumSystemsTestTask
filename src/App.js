@@ -1,35 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router";
 import "./App.css";
 import api from "./api/api";
 import uuid from "react-uuid";
-import { useServerData } from "./components/useServerData";
 import { CartView } from "./pages/cartView/CartView";
 import { CreateView } from "./pages/createView/CreateView";
 import { EditView } from "./pages/editView/EditView";
 import { MainView } from "./pages/mainView/MainView";
 import { PageNotFound } from "./pages/pageNotFound/PageNotFound";
+import { PER_PAGE } from "./utils/constants";
 
 const App = () => {
-  const [
-    {
-      productsData,
-      isFetching,
-      setProductsData,
-      cartProducts,
-      setCartProducts,
-      setCurrentPage,
-      pages,
-      setSearchValue,
-      currentProducts,
-    },
-  ] = useServerData();
+  const [productsData, setProductsData] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
+  const [cartProducts, setCartProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  const indexOfLastItem = currentPage * PER_PAGE;
+  const indexOfFirstItem = indexOfLastItem - PER_PAGE;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+  const pages = Math.ceil(filteredProducts.length / PER_PAGE);
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+  // ==== fetching data from server
+  const getProducts = async () => {
+    try {
+      setIsFetching(true);
+      const response = await fetch("http://localhost:8000/products");
+      const result = await response.json();
+      setIsFetching(false);
+      setProductsData(result);
+    } catch (e) {
+      alert(e);
+    }
+  };
+  useEffect(() => {
+    setFilteredProducts(
+      productsData.filter((product) =>
+        product.title.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    );
+  }, [searchValue, productsData]);
 
   // === Deleting product
   const onDeleteItem = async (id) => {
     await api.delete(`/products/${id}`);
-    const newProductsList = productsData.filter((product) => product.id !== id);
-    setProductsData(newProductsList);
+    getProducts();
   };
   // === adding product to db
   const addProductHandler = async (title, price, description) => {
@@ -57,7 +80,7 @@ const App = () => {
       ...product,
       quantity: 1,
     };
-    const response = await api.post("/cart", request);
+    const response = await api.post(`/cart/${product.id}`, request);
     setCartProducts([...cartProducts, response.data]);
   };
   const increment = (product) => {
@@ -118,7 +141,7 @@ const App = () => {
           path="/cartView"
           render={() => (
             <CartView
-              isFetching={isFetching}
+              // isFetching={isFetching}
               cartProducts={cartProducts}
               increment={increment}
               decrement={decrement}
@@ -133,7 +156,7 @@ const App = () => {
           )}
         />
         <Route
-          path="/createView"
+          path="/createView/"
           render={(props) => (
             <CreateView {...props} addProductHandler={addProductHandler} />
           )}

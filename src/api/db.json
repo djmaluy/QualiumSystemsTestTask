@@ -2,17 +2,9 @@
   "products": [
     {
       "id": "bix27468fjc",
-      "title": "Audi ",
+      "title": "Audi 6",
       "price": 100,
-      "description": "lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "inCart": false
-    },
-    {
-      "id": "BMW",
-      "title": "iphone 11",
-      "price": "150",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "inCart": false
+      "description": "lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?"
     },
     {
       "id": "ox98i1f5idg",
@@ -22,102 +14,10 @@
       "inCart": false
     },
     {
-      "id": "adv62bxeq9i",
-      "title": "Lexus",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 250,
-      "inCart": true
-    },
-    {
-      "id": "yp5hqdyqh9b",
-      "title": "Mazda",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 300,
-      "inCart": false
-    },
-    {
-      "id": "e79ep31aiwk",
-      "title": "Mitsubishi",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 350,
-      "inCart": false
-    },
-    {
-      "id": "vbrrcrvb9lg",
-      "title": "Opel",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 400,
-      "inCart": false
-    },
-    {
-      "id": "jop3ymxur9",
-      "title": "Peugeot",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 450,
-      "inCart": false
-    },
-    {
-      "id": "b5vcuhjp8r9",
-      "title": "Renault",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 500,
-      "inCart": false
-    },
-    {
-      "id": "z60tmp10ba",
-      "title": "SEAT",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 550,
-      "inCart": false
-    },
-    {
-      "id": "jko2vslbj4",
-      "title": "Scoda",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 600,
-      "inCart": false
-    },
-    {
-      "id": "hxgyij8ixgj",
-      "title": "Suzuki",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 650,
-      "inCart": false
-    },
-    {
-      "id": "tdr6kubr2xd",
-      "title": "Tesla",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 700,
-      "inCart": false
-    },
-    {
-      "id": "ct4w8vhab5p",
-      "title": "Toyota",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 750,
-      "inCart": false
-    },
-    {
-      "id": "vkllhfm09zm",
-      "title": "Ford",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 800,
-      "inCart": false
-    },
-    {
-      "id": "m7281hc8os",
-      "title": "Honda",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 850,
-      "inCart": false
-    },
-    {
-      "id": "ixp8ux8u33h",
-      "title": "Hyundai",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "price": 900,
-      "inCart": false
+      "id": "6b61b-ed13-befb-3571-563b151c6c88",
+      "title": "VAZ 2106",
+      "price": "22",
+      "description": "test"
     }
   ],
   "cart": [
