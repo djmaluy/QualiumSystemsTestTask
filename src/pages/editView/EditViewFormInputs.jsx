@@ -10,7 +10,7 @@ export const EditViewFormInputs = ({ state, handleChange }) => {
           id="title"
           name="title"
           value={state.title}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         />
       </li>
       <li>
@@ -20,7 +20,7 @@ export const EditViewFormInputs = ({ state, handleChange }) => {
           type="number"
           name="price"
           value={state.price}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         />
       </li>
       <li>
@@ -30,7 +30,7 @@ export const EditViewFormInputs = ({ state, handleChange }) => {
           type="text"
           name="description"
           value={state.description}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         />
       </li>
       <li>

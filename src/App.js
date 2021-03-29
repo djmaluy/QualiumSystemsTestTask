@@ -13,10 +13,11 @@ import { PER_PAGE } from "./utils/constants";
 const App = () => {
   const [productsData, setProductsData] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  const [cartProducts, setCartProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
+  const [inCart, setInCart] = useState(false);
 
   const indexOfLastItem = currentPage * PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - PER_PAGE;
@@ -28,6 +29,10 @@ const App = () => {
 
   useEffect(() => {
     getProducts();
+  }, []);
+
+  useEffect(() => {
+    getCart();
   }, []);
   // ==== fetching data from server
   const getProducts = async () => {
@@ -41,6 +46,16 @@ const App = () => {
       alert(e);
     }
   };
+  const getCart = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/cart");
+      const data = await response.json();
+      setCartProducts(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  // === filtering data
   useEffect(() => {
     setFilteredProducts(
       productsData.filter((product) =>
@@ -74,15 +89,20 @@ const App = () => {
       })
     );
   };
+
   // === adding product to the cart
   const addToCart = async (product) => {
     const request = {
       ...product,
       quantity: 1,
+      inCart: true,
     };
-    const response = await api.post(`/cart/${product.id}`, request);
+    const response = await api.post(`/cart`, request);
+    console.log(response.data);
+    setInCart(inCart);
     setCartProducts([...cartProducts, response.data]);
   };
+
   const increment = (product) => {
     const exist = cartProducts.find((p) => p.id === product.id);
     if (exist) {
@@ -109,6 +129,7 @@ const App = () => {
       );
     }
   };
+  // === deleting from cart
   const deleteFromCart = async (id) => {
     api.delete(`/cart/${id}`);
     const newCartProducts = cartProducts.filter((p) => {
@@ -141,7 +162,6 @@ const App = () => {
           path="/cartView"
           render={() => (
             <CartView
-              // isFetching={isFetching}
               cartProducts={cartProducts}
               increment={increment}
               decrement={decrement}
@@ -156,7 +176,7 @@ const App = () => {
           )}
         />
         <Route
-          path="/createView/"
+          path="/createView"
           render={(props) => (
             <CreateView {...props} addProductHandler={addProductHandler} />
           )}
